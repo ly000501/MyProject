@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>副教授</title>
+    <link href="../static/layui/css/layui.css" rel="stylesheet">
+    <script src="../static/layui/layui.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <div class="layui-row">
+            <div class="layui-col-md3">
+                <a th:href="@{toAddTeacher.do}" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe624;</i>添加</a>
+            </div>
+        </div>
+    </div>
+    <table class="layui-table" id="layui-table" lay-filter="demo">
+        <thead>
+        <tr>
+            <th>教师编号</th>
+            <th>教师姓名</th>
+            <th>教师简介</th>
+            <th>任职时间</th>
+            <th>职位</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tr th:each="teacher:${data}">
+            <td th:text="${teacher.teacher_id}">教师编号</td>
+            <td th:text="${teacher.teacher_name}">教师姓名</td>
+            <td th:text="${teacher.teacher_brief}">教师简介</td>
+            <td th:text="${teacher.hiredate}">任职时间</td>
+            <td th:text="${teacher.job}">职位</td>
+            <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}">
+                <a class="layui-btn layui-btn-warm layui-btn-sm" th:href="@{findTeacherInfoById.do(teacher_id=${teacher.teacher_id})}">查看</a>
+                <a class="layui-btn layui-btn-sm" th:href="@{findTeacherById.do(teacher_id=${teacher.teacher_id})}">修改</a>
+                <a class="layui-btn layui-btn-danger layui-btn-sm" th:href="@{deleteViceProfessorById.do(teacher_id=${teacher.teacher_id})}">删除</a>
+            </th>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <div class="layui-row">
+                            <div class="layui-col-md9">
+                                页数：<input type="button" class="layui-btn layui-btn-primary layui-btn-xs" th:value="${pageNum}"/>，
+                                总页数：<input type="button" class="layui-btn layui-btn-primary layui-btn-xs" th:value="${pageCount}"/>，
+                                每页记录数：<input type="button" class="layui-btn layui-btn-primary layui-btn-xs" th:value="${pageSize}"/>，
+                                数据总数：<input type="button" class="layui-btn layui-btn-primary layui-btn-xs" th:value="${number}"/>
+                            </div>
+                            <div class="layui-col-md3">
+                            <span th:if="${pageNum!=1}">
+                <a class="layui-btn layui-btn-primary layui-btn-xs"
+                   th:href="@{findProfessorListAll.do(pageNum=1)}">首页</a>&nbsp;&nbsp;
+                <a class="layui-btn layui-btn-primary layui-btn-xs"
+                   th:href="@{findProfessorListAll.do(pageNum=(${pageNum}-1))}">上一页</a>
+                    </span>
+                                <span th:if="${pageNum!=pageCount}">
+                <a class="layui-btn layui-btn-primary layui-btn-xs"
+                   th:href="@{findProfessorListAll.do(pageNum=(${pageNum}+1))}">下一页</a>
+                <a class="layui-btn layui-btn-primary layui-btn-xs"
+                   th:href="@{findProfessorListAll.do(pageNum=${pageCount})}">尾页</a>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </thead>
+    </table>
+
+
+</body>
+<script th:inline="none" type="text/javascript">
+    layui.use('table', function () {
+        var table = layui.table;
+
+        table.render({
+            elem: '#layui-table'
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+
+
+        });
+    })
+</script>
+<style>
+    body{overflow-y: scroll;} /* 禁止刷新后出现横向滚动条 */
+</style>
+</html>

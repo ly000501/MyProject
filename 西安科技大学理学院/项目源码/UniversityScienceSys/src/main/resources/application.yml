@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+mybatis:
+  typeAliasesPackage: com/xinzhiyun/universitysciencesys/dao/mappers/*.xml
+  
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/universitysciencesys?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true&allowMultiQueries=true
+    username: root
+    password: 12138
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/static/
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    mode: HTML5
+    prefix: classpath:/templates/
+    suffix: .html
+    servlet:
+      content-type: text/html
+

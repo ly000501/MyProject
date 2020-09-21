@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>团委、学生会信息</title>
+    <link rel="stylesheet" href="../../../../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../../../../static/layui/layui.js" ></script>
+</head>
+<body class="layui-container">
+<div class="layui-row">
+    <div class="layui-col-md2 layui-col-md-offset10">
+        <span>
+            <a class="layui-btn layui-btn-radius layui-btn-danger" href="javascript:history.back(-1)"> <i class="layui-icon">&#xe65c;</i>返回</a>
+        </span>
+    </div>
+</div>
+<div  class="layui-row">
+    <div class="layui-col-md4"></div>
+    <div class="layui-col-md4 layui-col-md-offset3">
+        <h2><pre th:text="${stuUnion.union_title}"> </pre></h2>
+    </div>
+</div>
+<br>
+<div  class="layui-row">
+    <div class="layui-col-md2 layui-col-md-offset4">
+        <pre th:text="${stuUnion.date}"> </pre>
+    </div>
+
+    <div class="layui-col-md2">
+        <pre th:text="${stuUnion.person}"> </pre>
+    </div>
+</div>
+
+
+<div class="layui-card" th:if="${stuUnion.content!=null}">
+    <div class="layui-card-body">
+        <pre th:text="${stuUnion.content}"></pre>
+    </div>
+</div>
+<div class="layui-card" th:if="${stuUnion.picture!=null}">
+    <div class="layui-card-body">
+        <div  class="layui-row">
+            <div class="layui-col-md11 layui-col-md-offset1">
+                <img style="min-width: 300px;max-width:1000px "  th:src="@{${stuUnion.picture}}">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

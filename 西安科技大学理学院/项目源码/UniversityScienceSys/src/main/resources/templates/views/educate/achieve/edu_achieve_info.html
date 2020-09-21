@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>教学成功信息</title>
+    <link rel="stylesheet" href="../../../../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../../../../static/layui/layui.js" ></script>
+</head>
+<body class="layui-container">
+<div class="layui-row">
+    <div class="layui-col-md2 layui-col-md-offset10">
+        <span>
+            <a class="layui-btn layui-btn-radius layui-btn-danger" href="findEduAchieveAll.do"> <i class="layui-icon">&#xe65c;</i>返回</a>
+        </span>
+    </div>
+</div>
+<div  class="layui-row">
+    <div class="layui-col-md3 layui-col-md-offset4">
+        <h2><span th:text="${eduAchieve.educate_title}"> </span></h2>
+    </div>
+</div>
+<div  class="layui-row">
+    <div class="layui-col-md4 layui-col-md-offset5">
+        <pre th:text="${eduAchieve.date}"> </pre>
+    </div>
+</div>
+
+<div class="layui-card">
+    <div class="layui-card-body">
+        <div class="layui-row">
+            <div class="layui-col-md2">
+                <a th:href="@{toAddAchieveList.do(educate_id=${eduAchieve.educate_id})}" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe654;</i>添加</a>
+            </div>
+        </div>
+    </div>
+        <!--表格-->
+        <table class="layui-table">
+            <colgroup>
+                <col width="80">
+                <col width="350">
+                <col width="100">
+                <col width="270">
+                <col width="130">
+                <col >
+            </colgroup>
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>成果名称</th>
+                <th>获奖等级</th>
+                <th>成果主要完成人姓名</th>
+                <th>主要完成单位</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="data : ${achieveList}">
+                <td th:text="${data.achieve_id}"></td>
+                <td th:text="${data.achieve_name}"></td>
+                <td th:text="${data.grade}"></td>
+                <td th:text="${data.person}"></td>
+                <td th:text="${data.unit}"></td>
+                <td lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}">
+                    <a class="layui-btn layui-btn-sm"  th:href="@{toUpdateAchieveListById.do(achieve_id=${data.achieve_id})}">修改</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-sm"  th:href="@{deleteAchieveListById.do(achieve_id=${data.achieve_id},educate_id=${eduAchieve.educate_id})}">删除</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+</div>
+
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>教师添加</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../static/layui/layui.js" ></script>
+</head>
+<body>
+<div class="layui-container">
+    <form class="layui-form" action="addTeacher.do" enctype="multipart/form-data">
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block">
+                <input type="text" name="teacher_name" required  lay-verify="required" placeholder="请输入姓名"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">简介</label>
+            <div class="layui-input-block">
+                <input type="text" name="teacher_brief"   class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">任职时间</label>
+            <div class="layui-input-block">
+                <input type="text" id="hireDate" autocomplete="off" name="hiredate" placeholder="格式：yyyy-MM-dd HH:mm:ss"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">照片</label>
+            <div class="layui-input-block">
+                <input type="file" name="filePhoto"  class="layui-btn" autocomplete="off" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">职位</label>
+            <div class="layui-input-block">
+                <input type="hidden" name="photo" value="default.jpg">
+                <input type="text" name="job" required  lay-verify="required" placeholder="请输入职位：教授/副教授"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">教育背景</label>
+            <div class="layui-input-block">
+                <input type="text" name="background" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">工作经验</label>
+            <div class="layui-input-block">
+                <input type="text" name="experience"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">研究方向</label>
+            <div class="layui-input-block">
+                <input type="text" name="research"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">所授课程</label>
+            <div class="layui-input-block">
+                <input type="text" name="teachcourse" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">社会服务</label>
+            <div class="layui-input-block">
+                <input type="text" name="social"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">论文</label>
+            <div class="layui-input-block">
+                <input type="text" name="paper"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">著作及教材</label>
+            <div class="layui-input-block">
+                <input type="text" name="textbook"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">课题</label>
+            <div class="layui-input-block">
+                <input type="text" name="task"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">获奖</label>
+            <div class="layui-input-block">
+                <input type="text" name="award"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">立即添加</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use('laydate', function() {
+        var laydate = layui.laydate;
+
+        //常规用法
+        laydate.render({
+            elem: '#hireDate'
+            ,type: 'datetime'
+        });
+    })
+</script>
+</body>
+</html>

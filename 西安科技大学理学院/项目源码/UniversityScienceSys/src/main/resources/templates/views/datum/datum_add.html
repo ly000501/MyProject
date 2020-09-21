@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>在线资源添加</title>
+    <link rel="stylesheet" href="../../../../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../../../../static/layui/layui.js" ></script>
+</head>
+<body>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md3 layui-col-md-offset9">
+        <span>
+            <a class="layui-btn layui-btn-radius layui-btn-danger" href="javascript:history.back(-1)"> <i class="layui-icon">&#xe65c;</i>返回</a>
+        </span>
+        </div>
+    </div>
+    <form class="layui-form" method="post" th:action="@{addDatum.do}" enctype="multipart/form-data">
+        <div class="layui-form-item">
+            <label class="layui-form-label">名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="datum_title"  lay-verify="required" placeholder="标题"  class="layui-input" autocomplete="off" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">日期</label>
+            <div class="layui-input-block">
+                <input type="text" id="date" lay-verify="date"  name="date" placeholder="格式：yyyy-MM-dd HH:mm:ss"  class="layui-input" autocomplete="off" >
+            </div>
+        </div>
+        <div class="layui-form-item"  style="width:300px">
+            <label class="layui-form-label">资料类型</label>
+            <div class="layui-input-block" >
+                <select name="type" lay-verify="required">
+                    <option value="">请选择类型</option>
+                    <option value="教学资料">教学资料</option>
+                    <option value="科研资料">科研资料</option>
+                    <option value="学工资料">学工资料</option>
+                    <option value="其他资料">其他资料</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">资料</label>
+            <div class="layui-input-block">
+                <input type="file" name="fileDoc"  autocomplete="off" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="submit" class="layui-btn"  value="立即添加"></input>
+                <input type="reset"  class="layui-btn layui-btn-primary" value="重置"></input>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    layui.use(['laydate','form'], function() {
+        var laydate = layui.laydate;
+        var form = layui.form;
+
+        //常规用法
+        laydate.render({
+            elem: '#date'
+            ,type: 'datetime'
+        });
+    })
+</script>
+</body>
+</html>

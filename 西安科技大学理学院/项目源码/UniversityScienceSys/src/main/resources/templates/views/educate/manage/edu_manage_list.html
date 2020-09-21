@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>教务信息列表</title>
+    <link rel="stylesheet" href="../../../../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../../../../static/layui/layui.js" ></script>
+</head>
+<body>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <div class="layui-row">
+            <div class="layui-col-md3">
+                <a th:href="@{toAddEduManage.do}" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe654;</i>添加</a>
+            </div>
+        </div>
+    </div>
+    <table class="layui-table" id="layui-table" lay-filter="demo" lay-skin="line">
+        <colgroup>
+            <col width="600">
+            <col width="400">
+            <col width="">
+        </colgroup>
+        <thead>
+        <tr>
+            <th>标题</th>
+            <th>时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tr th:each="eduInfo:${data}">
+            <td th:text="${eduInfo.educate_title}">标题</td>
+            <td th:text="${eduInfo.date}">时间</td>
+            <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}">
+                <a class="layui-btn layui-btn-warm layui-btn-sm" th:href="@{findEduManageById.do(educate_id=${eduInfo.educate_id})}">查看</a>
+                <a class="layui-btn layui-btn-sm" th:href="@{toUpdateEduManageById.do(educate_id=${eduInfo.educate_id})}">修改</a>
+                <a class="layui-btn layui-btn-danger layui-btn-sm" th:href="@{deleteEduManageById.do(educate_id=${eduInfo.educate_id})}">删除</a>
+            </th>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <div class="layui-row">
+                            <div class="layui-col-md9">
+                                页数：<input type="button" class="layui-btn layui-btn-primary layui-btn-xs" th:value="${pageNum}"/>，
+                                总页数：<input type="button" class="layui-btn layui-btn-primary layui-btn-xs" th:value="${pageCount}"/>，
+                                每页记录数：<input type="button" class="layui-btn layui-btn-primary layui-btn-xs" th:value="${pageSize}"/>，
+                                数据总数：<input type="button" class="layui-btn layui-btn-primary layui-btn-xs" th:value="${number}"/>
+                            </div>
+                            <div class="layui-col-md3">
+                            <span th:if="${pageNum!=1}">
+                <a class="layui-btn layui-btn-primary layui-btn-xs"
+                   th:href="@{findEduManageAll.do(pageNum=1)}">首页</a>&nbsp;&nbsp;
+                <a class="layui-btn layui-btn-primary layui-btn-xs"
+                   th:href="@{findEduManageAll.do(pageNum=(${pageNum}-1))}">上一页</a>
+                    </span>
+                                <span th:if="${pageNum!=pageCount}">
+                <a class="layui-btn layui-btn-primary layui-btn-xs"
+                   th:href="@{findEduManageAll.do(pageNum=(${pageNum}+1))}">下一页</a>
+                <a class="layui-btn layui-btn-primary layui-btn-xs"
+                   th:href="@{findEduManageAll.do(pageNum=${pageCount})}">尾页</a>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </thead>
+    </table>
+</div>
+</body>
+</html>

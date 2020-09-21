@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>教务信息修改</title>
+    <link rel="stylesheet" href="../../../../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../../../../static/layui/layui.js" ></script>
+</head>
+<body>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md2 layui-col-md-offset10">
+        <span>
+            <a class="layui-btn layui-btn-radius layui-btn-danger" href="findEduResourceAll.do"> <i class="layui-icon">&#xe65c;</i>返回</a>
+        </span>
+        </div>
+    </div>
+    <form class="layui-form" method="post" th:action="@{updateEduResourceById.do}" enctype="multipart/form-data" >
+        <div class="layui-form-item">
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-block">
+                <input type="hidden" th:value="${eduResource.educate_id}" name="educate_id" >
+                <input type="text" th:value="${eduResource.educate_title}" name="educate_title"  lay-verify="required" placeholder="标题"  class="layui-input" autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">时间</label>
+            <div class="layui-input-block">
+                <input type="text" id="date" th:value="${eduResource.date}" name="date" placeholder="格式：yyyy-MM-dd HH:mm:ss"  class="layui-input" autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">内容</label>
+            <div class="layui-input-block">
+                <textarea cols="10" rows="30" name="content" th:utext="${eduResource.content}" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="submit" class="layui-btn"  value="立即修改"></input>
+                <input type="reset"  class="layui-btn layui-btn-primary" value="重置"></input>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    layui.use('laydate', function() {
+        var laydate = layui.laydate;
+
+        //常规用法
+        laydate.render({
+            elem: '#date'
+            ,type: 'datetime'
+        });
+    })
+</script>
+</body>
+</html>

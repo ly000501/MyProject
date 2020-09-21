@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>杰出校友修改</title>
+    <link rel="stylesheet" href="../../../../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../../../../static/layui/layui.js" ></script>
+</head>
+<body>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md2 layui-col-md-offset10">
+        <span>
+            <a class="layui-btn layui-btn-radius layui-btn-danger" href="javascript:history.back(-1)"> <i class="layui-icon">&#xe65c;</i>返回</a>
+        </span>
+        </div>
+    </div>
+    <form class="layui-form" method="post" th:action="@{updateTraTutorById.do}" enctype="multipart/form-data" >
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block">
+                <input type="hidden" th:value="${traTutor.train_id}" name="train_id" >
+                <input type="text" th:value="${traTutor.train_name}" name="train_name"  lay-verify="required" placeholder="姓名"  class="layui-input" autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">职位</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${traTutor.job}" name="job"   class="layui-input" autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${traTutor.remark}" name="remark"   class="layui-input" autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item" style="width:300px">
+            <label class="layui-form-label">学科</label>
+            <div class="layui-input-block">
+                <select th:field="${traTutor.subject}" th:value="${traTutor.subject}" name="subject" lay-verify="required">
+                    <option value="">请选择学科</option>
+                    <option th:selected="${traTutor.subject=='工程力学、固体力学'}" value="工程力学、固体力学">工程力学、固体力学</option>
+                    <option th:selected="${traTutor.subject=='数学'}" value="数学">数学</option>
+                    <option th:selected="${traTutor.subject=='物理学'}" value="物理学">物理学</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">任职时间</label>
+            <div class="layui-input-block">
+                <input type="text" id="date" lay-verify="date" th:value="${traTutor.hiredate}" name="hiredate" placeholder="格式：yyyy-MM-dd HH:mm:ss"  class="layui-input" autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">照片</label>
+            <div class="layui-input-block">
+                <img th:width="300" th:src="@{${traTutor.photo}}">
+                <input type="hidden" name="photo" th:value="${traTutor.photo}">
+                <input type="file" name="filePhoto"  >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">简介</label>
+            <div class="layui-input-block">
+                <textarea name="brief" rows="20" th:utext="${traTutor.brief}" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="submit" class="layui-btn"  value="立即修改"></input>
+                <input type="reset"  class="layui-btn layui-btn-primary" value="重置"></input>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    layui.use(['laydate','form'], function() {
+        var laydate = layui.laydate;
+        var form = layui.form;
+
+        //常规用法
+        laydate.render({
+            elem: '#date'
+            ,type: 'datetime'
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新闻公告</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../static/layui/layui.js" ></script>
+</head>
+<body>
+<table id="layui-table" class="layui-table" lay-filter="test">
+
+</table>
+
+
+
+<script type="text/html" id="add-dialog" >
+    <!--添加对话框-->
+    <form class="layui-form" action="" id="add-form">
+        <div class="layui-form-item">
+            <!--标题-->
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-block">
+                <input type="hidden"  name="news_id" class="layui-input">
+                <input type="text" name="news_title" required lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            </div>
+            <!--记者-->
+            <label class="layui-form-label">记者</label>
+            <div class="layui-input-block">
+                <input type="text" style="size: 6px" name="person" required lay-verify="title" autocomplete="off" placeholder="请输入记者" class="layui-input">
+            </div>
+            <!--日期-->
+            <div class="layui-inline">
+                <label class="layui-form-label">日期</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="date"  placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--内容-->
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">内容</label>
+                <div class="layui-input-block">
+                    <textarea name="content" placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <!--提交-->
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="add-submit">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</script>
+
+<!--编辑对话框-->
+<script type="text/html" id="edit-dialog" >
+    <form class="layui-form" action="" lay-filter="edit-form">
+        <div class="layui-form-item">
+            <!--标题-->
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-block">
+                <input type="hidden" name="news_id"   class="layui-input">
+                <input type="text" name="news_title" required lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            </div>
+            <!--记者-->
+            <label class="layui-form-label">记者</label>
+            <div class="layui-input-block">
+                <input type="text" style="size: 6px" name="person" required lay-verify="title" autocomplete="off" placeholder="请输入记者" class="layui-input">
+            </div>
+            <!--日期-->
+            <div class="layui-inline">
+                <label class="layui-form-label">日期</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="date"  placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--内容-->
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">内容</label>
+                <div class="layui-input-block">
+                    <textarea name="content" placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <!--提交-->
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="edit-submit">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</script>
+
+<!--头部工具箱-->
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button id="btn_add" class="layui-btn layui-btn-normal" data-type="reload"><i class="layui-icon">&#xe624;</i> 添加</button>
+        <button id="btn_remove" class="layui-btn  layui-btn-danger" data-type="reload"  lay-event="deleteData" ><i class="layui-icon">&#xe67e;</i> 删除</button>
+    </div>
+</script>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script type="text/javascript" th:inline="none">
+    layui.use(['jquery','layer','form','table'],function () {
+        const table = layui.table;
+        const form = layui.form;
+        const $ = layui.$;
+        const layer = layui.layer;
+
+
+        /*分页*/
+        //第一个实例
+        table.render({
+            elem: '#layui-table'
+            ,height: 400
+            ,url: 'findNewsList.do' //数据接口
+            ,page: true //开启分页
+            ,limits: [5, 10, 15]
+            ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            ,cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                ,{field: 'news_id', title: '新闻编号', width:105, sort: true, fixed: 'left'}
+                ,{field: 'news_title', title: '标题', width:380}
+                ,{field: 'person', title: '记者', width:90}
+                ,{field: 'date', title: '日期', width:165,
+                   templet:'<div>{{ layui.util.toDateString(d.date, "yyyy-MM-dd HH:mm:ss") }}</div>'}
+                ,{field: 'content', title: '内容', width: 450}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+            ]],
+        });
+
+        /*添加*/
+        $("#btn_add").click(function(){
+            layer.open({
+                type:1,
+                content:$("#add-dialog").html(),
+                area:['450px'],
+                title:'添加'
+            })
+            //监听表格
+            form.on('submit(add-submit)',function(data){
+                $.post('addNews.do',data.field,function (flag) {
+                    console.log("data是："+data);
+                    console.log("flag是："+flag);
+                    if(flag){
+                        layer.msg('添加成功',{icon:6});
+                        layer.closeAll('page')//关闭对话框
+                        table.reload("layui-table");//刷新表格
+                    }else{
+                        layer.msg('添加失败',{icon:5});
+                    }
+                })
+                form.render();//重新渲染表单
+                return false;//阻止表格跳转
+            })
+        })
+
+        //头工具栏事件,删除操作
+        table.on('toolbar(test)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'deleteData':
+                    var array = checkStatus.data;
+                    var news_id = [];//定义空数组
+                    console.log("array: "+array);
+                    if(array.length==0){
+                        layer.msg("请选择要删除的数据");
+                    }else{
+                        for(var i in array){
+                            news_id.push(array[i].news_id);
+                        }
+                        //编写ajax进行删除操作
+                        $.post('deleteNewsById.do',{
+                            "news_id[]":news_id
+                        },function (flag) {
+                            if(flag){
+                                layer.msg("删除成功",{icon:6});
+                                table.reload('layui-table');//刷新表格
+                            }else{
+                                layer.msg("删除失败",{icon:5});
+                            }
+                        })
+                    }
+                    //layer.alert(JSON.stringify(data));
+                    return false;
+            };
+        });
+
+        //监听行工具事件,编辑,删除
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'del'){
+                layer.confirm('确定要删除吗？'
+                 , function(){
+                    console.log("data2:"+JSON.stringify(data.news_id));
+                        $.post('deleteNewsById.do',{
+                            "news_id[]":data.news_id
+                        },function (flag) {
+                            if(flag){
+                                layer.msg("删除成功",{icon:6});
+                                table.reload('layui-table');//刷新表格
+                            }else{
+                                layer.msg("删除失败",{icon:5});
+                            }
+                        })
+                },function () {
+                    console.log("点击了取消");
+                 }
+                );
+            } else if(obj.event === 'edit'){
+                layer.open({
+                    type:1,
+                    content:$("#edit-dialog").html(),
+                    area:['450px'],
+                    title:'编辑'
+                })
+                form.val('edit-form',{
+                    'news_id':data.news_id,
+                    'news_title':data.news_title,
+                    'person':data.person,
+                    'date':data.date,
+                    'content':data.content
+                })
+                form.render();//重新渲染表单,让组件完全显示
+                form.on('submit(edit-submit)',function (d) {
+                    console.log("d的值："+JSON.stringify(d.field));
+                    $.post('updateNewsById.do',d.field,function (flag) {
+                            if(flag){
+                                console.log("flag: "+flag);
+                                layer.msg('修改成功',{icon:6});
+                                layer.closeAll('page')//关闭对话框
+                                table.reload("layui-table");//刷新表格
+                            }else{
+                                layer.msg('修改失败',{icon:5});
+                            }
+                    })
+                    return false;
+                })
+            }
+        });
+    })
+</script>
+</body>
+</html>

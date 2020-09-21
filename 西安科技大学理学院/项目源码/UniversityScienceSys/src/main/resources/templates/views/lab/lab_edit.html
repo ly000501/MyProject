@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>实验室建设修改</title>
+    <link rel="stylesheet" href="../../../../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../../../../static/layui/layui.js" ></script>
+</head>
+<body>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md2 layui-col-md-offset10">
+        <span>
+            <a class="layui-btn layui-btn-radius layui-btn-danger" href="javascript:history.back(-1)" > <i class="layui-icon">&#xe65c;</i>返回</a>
+        </span>
+        </div>
+    </div>
+    <form class="layui-form" method="post" th:action="@{updateLabById.do}">
+        <div class="layui-form-item">
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-block">
+                <input type="hidden" th:value="${lab.lab_id}" name="lab_id" >
+                <input type="text" th:value="${lab.lab_title}" name="lab_title"  lay-verify="required" placeholder="标题"  class="layui-input" autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">实验室名称</label>
+            <div class="layui-input-block">
+                <select th:field="${lab.lab_name}" th:value="${lab.lab_name}" name="lab_name" lay-verify="required">
+                    <option value="">请选择实验室</option>
+                    <option th:selected="${lab.lab_name=='物理实验中心'}" value="物理实验中心">物理实验中心</option>
+                    <option th:selected="${lab.lab_name=='力学实验中心'}" value="力学实验中心">力学实验中心</option>
+                    <option th:selected="${lab.lab_name=='数学实验室'}" value="数学实验室">数学实验室</option>
+                    <option th:selected="${lab.lab_name=='图形图像实验室'}" value="图形图像实验室">图形图像实验室</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述类型</label>
+            <div class="layui-input-block">
+                <select th:field="${lab.type}" th:value="${lab.type}" name="type" lay-verify="required">
+                    <option value="">请选择...</option>
+                    <option th:selected="${lab.type=='实验中心概况'}" value="实验中心概况">实验中心概况</option>
+                    <option th:selected="${lab.type=='实验仪器与设备'}" value="实验仪器与设备">实验仪器与设备</option>
+                    <option th:selected="${lab.type=='开设实验'}" value="开设实验">开设实验</option>
+                    <option th:selected="${lab.type=='其他'}" value="其他">其他</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">时间</label>
+            <div class="layui-input-block">
+                <input type="text" id="date" lay-verify="date" th:value="${lab.date}" name="date" placeholder="格式：yyyy-MM-dd HH:mm:ss"  class="layui-input" autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">内容</label>
+            <div class="layui-input-block">
+                <textarea name="content" rows="20" th:utext="${lab.content}" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="submit" class="layui-btn"  value="立即修改"></input>
+                <input type="reset"  class="layui-btn layui-btn-primary" value="重置"></input>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    layui.use(['laydate','form'], function() {
+        var laydate = layui.laydate;
+        var form = layui.form;
+
+        //常规用法
+        laydate.render({
+            elem: '#date'
+        });
+    })
+</script>
+</body>
+</html>

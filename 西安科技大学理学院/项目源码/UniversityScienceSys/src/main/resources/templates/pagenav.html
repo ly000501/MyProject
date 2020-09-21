@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--导航条-->
+<div class="row">
+    <div align="center" class="col-md-12 .col-sm-12 .col-xs-12 .col-lg-12" style="height:50px;">
+        <nav class="navbar navbar-default" style="background:#2268B3;">
+            <ul class="nav nav-pills nav-justified" style="background:#2268B3;text-align: center; float: none;">
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
+                        href="/pages"
+                       role="button" style="background: #2268B3;color:#fff;">首页</a>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
+                       data-toggle="dropdown" href="#"
+                       role="button" style="background: #2268B3;color:#fff;">学院概况</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/college/findCollegeAll2.do(type='学院简介')}">学院简介</a></li>
+                        <li><a th:href="@{/college/findCollegeAll2.do(type='党政领导')}">党政领导</a></li>
+                        <li><a th:href="@{/college/findCollegeAll2.do(type='机构设置')}">机构设置</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
+                       data-toggle="dropdown" href="#"
+                       role="button" style="background: #2268B3;color:#fff;">师资队伍</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/teacher/findTeaStatus2.do(type='师资概况')}">师资概况</a></li>
+                        <li><a th:href="@{/teacher/findProfessorAll2.do(job='教授')}">教授</a></li>
+                        <li><a th:href="@{/teacher/findProfessorAll2.do(job='副教授')}">副教授</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
+                       data-toggle="dropdown" href="#"
+                       role="button" style="background: #2268B3;color:#fff;">教学研究</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/educate/findEduInfoAll2.do}">教务信息</a></li>
+                        <li><a th:href="@{/educate/findEduFlowAll2.do}">教务办公流程</a></li>
+                        <li><a th:href="@{/educate/findEduManageAll2.do}">管理制度</a></li>
+                        <li><a th:href="@{/educate/findEduAchieveAll2.do}">教学成果</a></li>
+                        <li><a th:href="@{/educate/findEduResourceAll2.do}">在线资源</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
+                       data-toggle="dropdown" href="#"
+                       role="button" style="background: #2268B3;color:#fff;">科学研究</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/science/findSciInfoAll2.do}">科研信息</a></li>
+                        <li><a th:href="@{/science/findSciAchieveAll2.do}">研究成果</a></li>
+                        <li><a th:href="@{/science/findSciTeambuildAll2.do}">团队建设</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
+                       data-toggle="dropdown" href="#"
+                       role="button" style="background: #2268B3;color:#fff;">学生培养</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <!--<a th:href="@{/train/findTraSystemAll2.do(type='本科生')}"></a>-->
+                            <a tabindex="-1" href="javascript:;">本科生培养</a>
+                            <ul class="dropdown-menu">
+                                <li><a th:href="@{/train/findTraSystemAll2.do(type='本科生')}">培养制度</a></li>
+                                <li><a th:href="@{/train/findTraRegularByType.do(type='专业简介')}">专业简介</a></li>
+                                <li><a th:href="@{/train/findTraRegularByType.do(type='培养计划')}">培养计划</a></li>
+                                <li><a th:href="@{/train/findTraRegularByType.do(type='课程简介')}">课程简介</a></li>
+                            </ul>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li  class="dropdown-submenu">
+                            <a tabindex="-1" href="javascript:;">研究生培养</a>
+                            <ul class="dropdown-menu">
+                                <li><a th:href="@{/train/findTraSystemAll2.do(type='研究生')}">培养制度</a></li>
+                                <li><a th:href="@{/train/findTraGraduateByType.do(type='硕士点简介')}">硕士点简介</a></li>
+                                <li><a th:href="@{/train/findTraGraduateByType.do(type='培养方案')}">培养方案</a></li>
+                                <li><a th:href="@{/train/findTraTutorByRemark.do(remark='博导')}">博士生导师</a></li>
+                                <li><a th:href="@{/train/findTraTutorBySubject.do}">硕士生导师</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
+                       data-toggle="dropdown" href="#"
+                       role="button" style="background: #2268B3;color:#fff;">杰出校友</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/outstand/findOutAlumnaAll2.do}">杰出校友</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
+                       data-toggle="dropdown" href="#"
+                       role="button" style="background: #2268B3;color:#fff;">招生就业</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/work/findWorInfoAll2.do}">招生信息</a></li>
+                        <li><a th:href="@{/work/findWorJobAll2.do}">就业信息</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
+                       data-toggle="dropdown" href="#"
+                       role="button" style="background: #2268B3;color:#fff;">资料下载</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/datum/findDatumByType2.do(type='教学资料')}">教学资料</a></li>
+                        <li><a href="pages/data/science.html">科研资料</a></li>
+                        <li><a href="pages/data/indust.html">学工资料</a></li>
+                        <li><a href="pages/data/other.html">其他资料</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
+                       data-toggle="dropdown" href="#"
+                       role="button" style="background: #2268B3;color:#fff;">实验室建设</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/lab/findLabAll2.do(lab_name='物理实验中心')}">物理实验室中心</a></li>
+                        <li><a th:href="@{/lab/findLabAll2.do(lab_name='力学实验室中心')}">力学实验室中心</a></li>
+                        <li><a th:href="@{/lab/findLabAll2.do(lab_name='数学实验室')}">数学实验室</a></li>
+                        <li><a th:href="@{/lab/findLabAll2.do(lab_name='图形图像实验室')}">图形图像实验室</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
+                       data-toggle="dropdown" href="#"
+                       role="button" style="background: #2268B3;color:#fff;">党建工作</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/party/findPartyAll2.do(type='党员活动')}">党员活动</a></li>
+                        <li><a th:href="@{/party/findPartyAll2.do(type='组织结构')}">组织结构</a></li>
+                        <li><a th:href="@{/party/findPartyAll2.do(type='理论学习')}">理论学习</a></li>
+                        <li><a th:href="@{/party/findPartyAll2.do(type='党员风采')}">党员风采</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
+                       data-toggle="dropdown" href="#"
+                       role="button" style="background: #2268B3;color:#fff;">学生工作</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/student/findStudentByType.do(type='学工动态')}">学工动态</a></li>
+                        <li><a th:href="@{/student/findStudentByType.do(type='学工队伍')}">学工队伍</a></li>
+                        <li><a th:href="@{/student/findStuPartyAll2.do}">学生党建</a></li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="javascript:;">团委,学生会</a>
+                            <ul class="dropdown-menu">
+                                <li><a th:href="@{/student/findStuUnionByType.do(type='组织机构')}">组织机构</a></li>
+                                <li><a th:href="@{/student/findStuUnionByType.do(type='学生社团')}">学生社团</a></li>
+                                <li><a th:href="@{/student/findStuUnionByType.do(type='学生活动')}">学生活动</a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/student/findStudentByType.do(type='学生资助')}">学生资助</a></li>
+                        <li><a th:href="@{/student/findStudentByType.do(type='规章制度')}">规章制度</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+</body>
+<style>
+    .dropdown-menu{
+        min-width: 110px;
+    }
+    .dropdown-submenu {
+        position: relative;
+    }
+
+    .dropdown-submenu>.dropdown-menu {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        margin-top: -30px;
+        margin-left: 100%;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
+
+    .dropdown-submenu:hover>.dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-submenu1{
+        position: relative;
+    }
+    .dropdown-menu1{
+        position: absolute;
+        top: -15px;
+        left: 115px;
+        padding: 5px 0;
+        margin: 2px 0 0;
+        background-color: #fff;
+        line-height: 1.6;
+        color: #333;
+        white-space: nowrap;
+        display: none;
+    }
+    .dropdown-submenu1:hover>.dropdown-menu1{
+        display: block;
+    }
+
+</style>
+</html>

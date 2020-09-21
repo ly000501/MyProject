@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>杰出校友信息</title>
+    <link rel="stylesheet" href="../../../../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../../../../static/layui/layui.js" ></script>
+</head>
+<body class="layui-container">
+<div class="layui-row">
+    <div class="layui-col-md2 layui-col-md-offset10">
+        <span>
+            <a class="layui-btn layui-btn-radius layui-btn-danger" href="findOutAlumnaAll.do"> <i class="layui-icon">&#xe65c;</i>返回</a>
+        </span>
+    </div>
+</div>
+<div  class="layui-row">
+    <div class="layui-col-md1 layui-col-md-offset4">
+        <h2><pre th:text="${outAlumna.outstand_name}"> </pre></h2>
+    </div>
+    <div class="layui-col-md2">
+        <h2><pre th:text="${outAlumna.job}"></pre></h2>
+    </div>
+</div>
+<div  class="layui-row">
+    <div class="layui-col-md4 layui-col-md-offset4">
+        <pre th:text="${outAlumna.hiredate}"> </pre>
+    </div>
+</div>
+
+<div class="layui-card">
+    <div class="layui-card-body">
+        <div  class="layui-row">
+            <div class="layui-col-md4 layui-col-md-offset3">
+                <img th:src="@{${outAlumna.photo}}">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <pre th:text="${outAlumna.brief}"></pre>
+    </div>
+</div>
+</body>
+</html>

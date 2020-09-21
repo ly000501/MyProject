@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>西安科技大学理学院管理系统</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css" th:href="@{../static/layui/css/layui.css}" media="all">
+    <script type="text/javascript" src="../static/layui/layui.js"  th:src="@{../static/layui/layui.js}"></script>
+
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">理学院后台管理系统</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="javascript:;" onclick="onTabs('新闻公告','news/toNotice.do','0-1')">新闻公告</a></li>
+            <li class="layui-nav-item"><a href="">管理中心</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    admin
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退出</a></li>
+        </ul>
+    </div>
+    <!--左侧导航栏-->
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test" lay-shrink="all">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">学院概况</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" onclick="onTabs('学院概况','college/findCollegeAll.do','1-1')">学院概况</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">师资队伍</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" onclick="onTabs('师资概况','college/findCollegeAll.do','2-1')">师资概况</a></dd>
+                        <dd><a href="javascript:;" onclick="onTabs('教授','teacher/findProfessorListAll.do','2-2')">教授</a></dd>
+                        <dd><a href="javascript:;" onclick="onTabs('副教授','teacher/findViceProfessorListAll.do','2-3')">副教授</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">教学研究</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" onclick="onTabs('教务信息','educate/findEduInfoAll.do','3-1')">教务信息</a></dd>
+                        <dd><a href="javascript:;" onclick="onTabs('教务办公流程','educate/findEduFlowAll.do','3-2')">教务办公流程</a></dd>
+                        <dd><a href="javascript:;" onclick="onTabs('管理制度','educate/findEduManageAll.do','3-3')">管理制度</a></dd>
+                        <dd><a href="javascript:;" onclick="onTabs('教学成果','educate/findEduAchieveAll.do','3-4')">教学成果</a></dd>
+                        <dd><a href="javascript:;" onclick="onTabs('在线资源','educate/findEduResourceAll.do','3-5')">在线资源</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">科学研究</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" onclick="onTabs('科研信息','science/findSciInfoAll.do','4-1')">科研信息</a></dd>
+                        <dd><a href="javascript:;" onclick="onTabs('研究成果','science/findSciAchieveAll.do','4-2')">研究成果</a></dd>
+                        <dd><a href="javascript:;" onclick="onTabs('团队建设','science/findSciTeambuildAll.do','4-3')">团队建设</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">学生培养</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="javascript:;">本科生培养</a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="javascript:;" onclick="onTabs('培养制度','train/findRegTraSystemAll.do','5-1-1')">培养制度</a></dd>
+                                <dd><a href="javascript:;" onclick="onTabs('简介与计划','train/findTraRegularAll.do','5-1-2')">简介与计划</a></dd>
+                            </dl>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;">研究生培养</a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="javascript:;" onclick="onTabs('培养制度','train/findGraTraSystemAll.do','5-2-1')">培养制度</a></dd>
+                                <dd><a href="javascript:;" onclick="onTabs('简介与方案','train/findTraGraduateAll.do','5-2-2')">简介与方案</a></dd>
+                                <dd><a href="javascript:;" onclick="onTabs('博士生导师','train/findTraDoctorTutorAll.do','5-2-3')">博士生导师</a></dd>
+                                <dd><a href="javascript:;" onclick="onTabs('硕士生导师','train/findTraMasterTutorAll.do','5-2-4')">硕士生导师</a></dd>
+                            </dl>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">杰出校友</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" onclick="onTabs('杰出校友','outstand/findOutAlumnaAll.do','6-1')">杰出校友</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">招生就业</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" onclick="onTabs('招生信息','work/findWorInfoAll.do','7-1')">招生信息</a></dd>
+                        <dd><a href="javascript:;" onclick="onTabs('就业信息','work/findWorJobAll.do','7-2')">就业信息</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">资料下载</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" onclick="onTabs('资料下载','datum/findDatumAll.do','8-1')">资料列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">实验室建设</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" onclick="onTabs('实验室建设','lab/findLabAll.do','9-1')">实验室建设列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">党建工作</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" onclick="onTabs('党建工作','party/findPartyAll.do','10-1')">党建工作列表</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">学生工作</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" onclick="onTabs('学生工作','student/findStudentAll.do','11-1')">学生工作列表</a></dd>
+                        <dd><a href="javascript:;" onclick="onTabs('学生党建','student/findStuPartyAll.do','11-2')">学生党建</a></dd>
+                        <dd><a href="javascript:;" onclick="onTabs('团委、学生会','student/findStuUnionAll.do','11-3')">团委、学生会</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <div class="layui-tab layui-tab-brief" lay-filter="demo" lay-allowClose="true">
+                <ul class="layui-tab-title">
+                    <!--选项卡-->
+                </ul>
+                <div class="layui-tab-content">
+                    <!--选项卡内容区-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+
+        <a href="https://lxy.xust.edu.cn/index.htm">西安科技大学理学院</a><br>
+        <a href="https://www.layui.com/doc/">layui官方网址</a>
+    </div>
+</div>
+
+
+
+
+<script>
+    //JavaScript代码区域
+    var element = "";
+    var $ = "";
+
+    layui.use('element', function() {
+        element = layui.element;
+        $ = layui.$;
+
+    });
+
+
+    function onTabs(test, url, id) {
+        var flag = false;
+        //遍历选项卡中的li
+        $(".layui-tab-title li").each(function() {
+            if (id == this.getAttribute("lay-id")) { //说明当前选项卡已存在
+                flag = true;
+            }
+        })
+
+        if (!flag) {
+            element.tabAdd('demo', {
+                title: test,
+                content: '<iframe style="width:100%;min-height:600px;" scrolling="auto" frameborder="no" src="' + url +
+                    '"></iframe>' //支持传入html
+                ,
+                id: id
+            });
+            element.tabChange("demo", id);
+        } else {
+            element.tabChange("demo", id);
+        }
+
+
+    }
+</script>
+</body>
+</html>

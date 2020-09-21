@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>学生工作信息</title>
+    <link rel="stylesheet" href="../../../../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../../../../static/layui/layui.js" ></script>
+</head>
+<body class="layui-container">
+<div class="layui-row">
+    <div class="layui-col-md2 layui-col-md-offset10">
+        <span>
+            <a class="layui-btn layui-btn-radius layui-btn-danger" href="javascript:history.back(-1)"> <i class="layui-icon">&#xe65c;</i>返回</a>
+        </span>
+    </div>
+</div>
+<div  class="layui-row">
+    <div class="layui-col-md4"></div>
+    <div class="layui-col-md4 layui-col-md-offset3">
+        <h2><pre th:text="${student.student_title}"> </pre></h2>
+    </div>
+    <div class="layui-col-md4"></div>
+    </div>
+</div>
+<div  class="layui-row">
+    <div class="layui-col-md2 layui-col-md-offset4">
+        <pre th:text="${student.date}"> </pre>
+    </div>
+    <div class="layui-col-md2">
+        <pre th:text="${student.person}"> </pre>
+    </div>
+</div>
+
+
+<div class="layui-card">
+    <div class="layui-card-body">
+        <pre th:text="${student.content}"></pre>
+    </div>
+</div>
+<div class="layui-card" th:if="${student.picture!=null}">
+    <div class="layui-card-body">
+        <div  class="layui-row">
+            <div class="layui-col-md4 layui-col-md-offset3">
+                <img width="300px" th:src="@{${student.picture}}">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>教师添加</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../static/layui/layui.js" ></script>
+</head>
+<body>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md2 layui-col-md-offset9">
+        <span th:if="${teacher.job=='教授'}">
+            <a class="layui-btn layui-btn-radius layui-btn-danger" th:href="@{findProfessorListAll.do}"> <i class="layui-icon">&#xe682;</i>返回</a>
+        </span>
+            <span th:if="${teacher.job=='副教授'}">
+            <a class="layui-btn layui-btn-radius layui-btn-danger" th:href="@{findViceProfessorListAll.do}"> <i class="layui-icon">&#xe682;</i>返回</a>
+        </span>
+        </div>
+    </div>
+    <form class="layui-form" method="post" th:action="@{updateTeacherById.do}" enctype="multipart/form-data" >
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block">
+                <input type="hidden" th:value="${teacher.teacher_id}" name="teacher_id" >
+                <input type="text" th:value="${teacher.teacher_name}" name="teacher_name"  lay-verify="required" placeholder="请输入姓名"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">简介</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${teacher.teacher_brief}" name="teacher_brief"   class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">任职时间</label>
+            <div class="layui-input-block">
+                <input type="text" id="hireDate" th:value="${teacher.hiredate}" name="hiredate" placeholder="格式：yyyy-MM-dd HH:mm:ss"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">职位</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${teacher.job}" name="job" required  lay-verify="required" placeholder="请输入职位：教授/副教授"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">照片</label>
+            <div class="layui-input-block">
+                <img th:width="120" th:src="@{${teacher.photo}}">
+                <input type="hidden" name="photo" th:value="${teacher.photo}">
+                <input type="file"  name="filePhoto" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">教育背景</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${teacher.background}" name="background" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">工作经验</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${teacher.experience}" name="experience"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">研究方向</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${teacher.research}" name="research"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">所授课程</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${teacher.teachcourse}" name="teachcourse" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">社会服务</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${teacher.social}" name="social"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">论文</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${teacher.paper}" name="paper"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">著作及教材</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${teacher.textbook}" name="textbook"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">课题</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${teacher.task}" name="task"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">获奖</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${teacher.award}" name="award"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="submit" class="layui-btn"  value="立即修改"></input>
+                <input type="reset"  class="layui-btn layui-btn-primary" value="重置"></input>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    layui.use('laydate', function() {
+        var laydate = layui.laydate;
+
+        //常规用法
+        laydate.render({
+            elem: '#hireDate'
+            ,type: 'datetime'
+        });
+    })
+</script>
+</body>
+</html>

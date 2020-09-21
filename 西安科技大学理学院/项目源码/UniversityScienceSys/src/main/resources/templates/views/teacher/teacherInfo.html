@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>教师信息</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../static/layui/layui.js" ></script>
+</head>
+<body class="layui-container">
+<div class="layui-row">
+    <div class="layui-col-md2 layui-col-md-offset9">
+        <span th:if="${teacher.job=='教授'}">
+            <a class="layui-btn layui-btn-radius layui-btn-danger" th:href="@{findProfessorListAll.do}"> <i class="layui-icon">&#xe682;</i>返回</a>
+        </span>
+        <span th:if="${teacher.job=='副教授'}">
+            <a class="layui-btn layui-btn-radius layui-btn-danger" th:href="@{findViceProfessorListAll.do}"> <i class="layui-icon">&#xe682;</i>返回</a>
+        </span>
+    </div>
+</div>
+<table class="layui-table" lay-even lay-skin="line" id="layui-table" lay-filter="demo" style="width: 1000px">
+    <tr>
+        <td>教师编号</td>
+    </tr>
+    <tr>
+        <td th:text="${teacher.teacher_id}">教师编号</td>
+    </tr>
+    <tr>
+        <td>教师姓名</td>
+    </tr>
+    <tr>
+        <td th:text="${teacher.teacher_name}">教师姓名</td>
+    </tr>
+    <tr>
+        <td>教师简介</td>
+    </tr>
+    <tr>
+        <td th:text="${teacher.teacher_brief}">教师简介</td>
+    </tr>
+    <tr>
+        <td>任职时间</td>
+    </tr>
+    <tr>
+        <td th:text="${teacher.hiredate}">任职时间</td>
+    </tr>
+    <tr>
+        <td>职位</td>
+    </tr>
+    <tr>
+        <td th:text="${teacher.job}">职位</td>
+    </tr>
+    <tr>
+        <td>照片</td>
+    </tr>
+    <tr>
+        <td><img th:width="120" th:src="@{${teacher.photo}}"></td>
+    </tr>
+    <tr>
+        <td>教育背景</td>
+    </tr>
+    <tr>
+        <td th:text="${teacher.background}">教育背景</td>
+    </tr>
+    <tr>
+        <td>工作经历</td>
+    </tr>
+    <tr>
+        <td th:text="${teacher.experience}">工作经历</td>
+    </tr>
+    <tr>
+        <td>研究方向</td>
+    </tr>
+    <tr>
+        <td th:text="${teacher.research}">研究方向</td>
+    </tr>
+    <tr>
+        <td>所授课程</td>
+    </tr>
+    <tr>
+        <td th:text="${teacher.teachcourse}">所授课程</td>
+    </tr>
+    <tr>
+        <td>社会职务</td>
+    </tr>
+    <tr>
+        <td th:text="${teacher.social}">社会职务</td>
+    </tr>
+    <tr>
+        <td>论文</td>
+    </tr>
+    <tr>
+        <td th:text="${teacher.paper}">论文</td>
+    </tr>
+    <tr>
+        <td>著作及教材</td>
+    </tr>
+    <tr>
+        <td th:text="${teacher.textbook}">著作及教材</td>
+    </tr>
+    <tr>
+        <td>课题</td>
+    </tr>
+    <tr>
+        <td th:text="${teacher.task}">课题</td>
+    </tr>
+    <tr>
+        <td>获奖</td>
+    </tr>
+    <tr>
+        <td th:text="${teacher.award}">获奖</td>
+    </tr>
+</table>
+</body>
+</html>

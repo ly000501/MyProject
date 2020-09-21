@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>团委、学生会修改</title>
+    <link rel="stylesheet" href="../../../../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../../../../static/layui/layui.js" ></script>
+</head>
+<body>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-md2 layui-col-md-offset10">
+        <span>
+            <a class="layui-btn layui-btn-radius layui-btn-danger" href="javascript:history.back(-1)"> <i class="layui-icon">&#xe65c;</i>返回</a>
+        </span>
+        </div>
+    </div>
+    <form class="layui-form" method="post" th:action="@{updateStuUnionById.do}" enctype="multipart/form-data" >
+        <div class="layui-form-item">
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-block">
+                <input type="hidden" th:value="${stuUnion.union_id}" name="union_id" >
+                <input type="text" th:value="${stuUnion.union_title}" name="union_title"  lay-verify="required" placeholder="标题"  class="layui-input" autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">人名</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${stuUnion.person}" name="person"   class="layui-input" autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item" style="width:300px">
+            <label class="layui-form-label">学生工作类别</label>
+            <div class="layui-input-block">
+                <select th:field="${stuUnion.type}" th:value="${stuUnion.type}" name="subject" lay-verify="required">
+                    <option value="">请选择</option>
+                    <option th:selected="${stuUnion.type=='组织机构'}" value="组织机构">组织机构</option>
+                    <option th:selected="${stuUnion.type=='学生社团'}" value="学生社团">学生社团</option>
+                    <option th:selected="${stuUnion.type=='学生活动'}" value="学生活动">学生活动</option>
+                    <option th:selected="${stuUnion.type=='其他'}" value="其他">其他</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">时间</label>
+            <div class="layui-input-block">
+                <input type="text" id="date" lay-verify="date" th:value="${stuUnion.date}" name="date" placeholder="格式：yyyy-MM-dd HH:mm:ss"  class="layui-input" autocomplete="off">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">照片</label>
+            <div class="layui-input-block">
+                <img th:width="300" th:src="@{${stuUnion.picture}}">
+                <input type="hidden" name="picture" th:value="${stuUnion.picture}">
+                <input type="file" name="filePicture" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">内容</label>
+            <div class="layui-input-block">
+                <textarea name="content" rows="20" th:utext="${stuUnion.content}" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="submit" class="layui-btn"  value="立即修改"></input>
+                <input type="reset"  class="layui-btn layui-btn-primary" value="重置"></input>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    layui.use(['laydate','form'], function() {
+        var laydate = layui.laydate;
+        var form = layui.form;
+
+        //常规用法
+        laydate.render({
+            elem: '#date'
+            ,type: 'datetime'
+        });
+    })
+</script>
+</body>
+</html>

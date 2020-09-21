@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>学生党建列表</title>
+    <link rel="stylesheet" href="../../../../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../../../../static/layui/layui.js" ></script>
+</head>
+<body>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <div class="layui-row">
+            <div class="layui-col-md3">
+                <a th:href="@{toAddStuParty.do}" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe654;</i>添加</a>
+            </div>
+        </div>
+    </div>
+    <table class="layui-table" id="layui-table" lay-filter="demo" lay-skin="line" >
+        <colgroup>
+            <col width="30">
+            <col width="260">
+            <col width="200">
+            <col width="350">
+            <col width="300">
+            <col width="">
+        </colgroup>
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>标题</th>
+            <th>资源名称</th>
+            <th>资源下载</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tr th:each="stuInfo,picStart:${data}">
+            <td th:text="${picStart.count}">序号</td>
+            <td th:text="${stuInfo.party_title}">标题</td>
+            <td th:text="${stuInfo.party_name}">资源名称</td>
+            <td><a style="color: #007DDB" th:href="@{downloadFile(fname=${stuInfo.file})}"><span th:text="${stuInfo.party_name}"></span></a></td>
+            <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}">
+                <a class="layui-btn layui-btn-sm" th:href="@{toUpdateStuPartyById.do(party_id=${stuInfo.party_id})}">修改</a>
+                <a class="layui-btn layui-btn-danger layui-btn-sm" th:href="@{deleteStuPartyById.do(party_id=${stuInfo.party_id})}">删除</a>
+            </th>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <div class="layui-row">
+                            <div class="layui-col-md9">
+                                页数：<input type="button" class="layui-btn layui-btn-primary layui-btn-xs" th:value="${pageNum}"/>，
+                                总页数：<input type="button" class="layui-btn layui-btn-primary layui-btn-xs" th:value="${pageCount}"/>，
+                                每页记录数：<input type="button" class="layui-btn layui-btn-primary layui-btn-xs" th:value="${pageSize}"/>，
+                                数据总数：<input type="button" class="layui-btn layui-btn-primary layui-btn-xs" th:value="${number}"/>
+                            </div>
+                            <div class="layui-col-md3">
+                            <span th:if="${pageNum!=1}">
+                <a class="layui-btn layui-btn-primary layui-btn-xs"
+                   th:href="@{findStuPartyAll.do(pageNum=1)}">首页</a>&nbsp;&nbsp;
+                <a class="layui-btn layui-btn-primary layui-btn-xs"
+                   th:href="@{findStuPartyAll.do(pageNum=(${pageNum}-1))}">上一页</a>
+                    </span>
+                                <span th:if="${pageNum!=pageCount}">
+                <a class="layui-btn layui-btn-primary layui-btn-xs"
+                   th:href="@{findStuPartyAll.do(pageNum=(${pageNum}+1))}">下一页</a>
+                <a class="layui-btn layui-btn-primary layui-btn-xs"
+                   th:href="@{findStuPartyAll.do(pageNum=${pageCount})}">尾页</a>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </thead>
+    </table>
+</div>
+</body>
+</html>

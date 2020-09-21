@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>在线资源信息</title>
+    <link rel="stylesheet" href="../../../../static/layui/css/layui.css"  >
+    <script type="text/javascript" src="../../../../static/layui/layui.js" ></script>
+</head>
+<body class="layui-container">
+<div class="layui-row">
+    <div class="layui-col-md2 layui-col-md-offset10">
+        <span>
+            <a class="layui-btn layui-btn-radius layui-btn-danger" href="javascript:history.back(-1)"> <i class="layui-icon">&#xe65c;</i>返回</a>
+        </span>
+    </div>
+</div>
+<div  class="layui-row">
+    <div class="layui-col-md4 layui-col-md-offset4">
+        <h2><pre th:text="${datum.datum_title}"> </pre></h2>
+    </div>
+    <div class="layui-col-md4"></div>
+    </div>
+</div>
+<div  class="layui-row">
+    <div class="layui-col-md2 layui-col-md-offset5">
+        <pre th:text="${datum.date}"> </pre>
+    </div>
+</div>
+
+<br><br>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <div class="layui-row">
+            <div class="layui-col-md12">
+                <h3><span th:text="${datum.datum_title}"></span></h3><br>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md1">
+                附件【
+            </div>
+            <div class="layui-col-md1">
+                <a style="color: #007DDB" th:href="@{downloadFile(fname=${datum.file})}"><p th:text="${datum.file_name}"></p></a>
+            </div>
+            <div class="layui-col-md2">
+                】已下载
+            </div>
+            <div class="layui-col-md1">
+                <p th:text="${datum.number}"></p>
+            </div>
+            <div class="layui-col-md1">
+                次
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
